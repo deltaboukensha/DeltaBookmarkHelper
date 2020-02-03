@@ -263,11 +263,24 @@ class SearchInputController {
 
 	async SetResult(result) {
 		RemoveChildren(this.resultElement);
+		let searchText = await this.GetText();
+		let pattern = new RegExp(`${searchText}`, "gi");
 		result = result.slice(0, 50);
+		
 		result.forEach((item) => {
-			var itemElement = document.createElement("button");
+			let itemElement = document.createElement("button");
 			itemElement.classList.add('item');
-			itemElement.innerText = item.title;
+			let text = item.title;
+			let matches = text.match(pattern);
+			let match = FirstOrDefault(matches);
+			text = text.replace(match, `<b>${match}</b>`);
+			
+			// matches.forEach((match) => {
+			// 	text = text.replace(match, `<b>${match}</b>`);
+			// });
+			
+			itemElement.innerHTML = text;
+			
 			itemElement.addEventListener("click", () => {
 				RemoveChildren(this.resultElement);
 				this.SetText(item.title);
