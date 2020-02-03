@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Delta Bookmark Helper</title>
+	<link rel="stylesheet" type="text/css" href="popup.css" />
+</head>
+
+<body>
+	<div class="main screen">
+		<div class="progress"><div class="bar"></div></div>
+		<div class="flex">
+			<button class="delete folder button flex-one">Delete Folder</button>
+			<button class="upsert folder button flex-one">Upsert Folder</button>
+			<button class="delete bookmark button flex-one">Delete Bookmark</button>
+			<button class="upsert bookmark button flex-one">Upsert Bookmark</button>
+		</div>
+		<div>
+			<input class="url input" type="text" placeholder="bookmark url"/>
+			<input class="title input" type="text" placeholder="bookmark title"/>
+			<input class="folder input" type="text" placeholder="bookmark folder"/>
+			<input class="folder search input" type="text" placeholder="search folder"/>
+		</div>
+		<div class="search result"></div>
+		<div class="folder result"></div>
+	</div>
+	<script src="popup.js"></script>
+</body>
+
+</html>

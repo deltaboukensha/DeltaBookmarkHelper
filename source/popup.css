@@ -1,0 +1,127 @@
+:root {
+	--defaultFont: 1em arial;
+}
+
+.flex {
+	display: flex;
+}
+
+.flex-one {
+	flex-grow: 1;
+}
+
+
+.button {
+	box-shadow: inset 0px 1px 0px 0px #54a3f7;
+	background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	background-color: #007dc1;
+	border-radius: 3px;
+	border: 1px solid #124d77;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #154682;
+	font: var(--defaultFont);
+}
+
+.button:hover {
+	background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	background-color: #0061a7;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+.screen {
+	padding: 5px;
+	font: var(--defaultFont);
+}
+
+.main.screen {
+	width: 600px;
+}
+
+.main .input {
+	width: 100%;
+	padding: 5px;
+	margin: 0px;
+	box-sizing: border-box;
+	font: var(--defaultFont);
+}
+
+.main .search.result {
+	position: fixed;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+
+.main .search.result .item {
+	padding: 5px;
+}
+
+.main .search.result .item:hover {
+	background-color: #92a1cf;
+	color: white;
+}
+
+.main .folder.result {
+	height: 400px;
+	overflow: auto;
+}
+
+.main .folder.result .item {
+	padding: 5px;
+}
+
+.main .folder .item a {
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
+}
+
+.progress{
+	position: relative;
+	height: 5px;
+	overflow: hidden;
+}
+
+.progress.loading{
+	background-color: #80008080;
+}
+
+.progress .bar{
+	position: absolute;
+	width: 100px;
+	height: 100%;
+	left: -100px;
+}
+
+.progress.success .bar {
+	background-color: green;
+	animation: animateProgress 1s;
+}
+
+.progress.failure .bar {
+	background-color: red;
+	animation: animateProgress 1s;
+}
+
+.progress.loading .bar {
+	background-color: purple;
+	animation: animateProgress 1s infinite;
+}
+
+@keyframes animateProgress {
+	0% {
+		left: calc(0% - 100px);
+	}
+
+	100% {
+		left: calc(100% + 100px);
+	}
+}
