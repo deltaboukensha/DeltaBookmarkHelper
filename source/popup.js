@@ -357,7 +357,7 @@ class FolderContentController {
 			
 			var buttonElement = document.createElement("button");
 			itemElement.appendChild(buttonElement);
-			buttonElement.innerText = "X";
+			buttonElement.innerText = "✰";
 			
 			buttonElement.addEventListener("click", async () => {
 				try{
