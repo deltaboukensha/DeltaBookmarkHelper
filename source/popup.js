@@ -340,17 +340,36 @@ class FolderContentController {
 		list.forEach((item) => {
 			var itemElement = document.createElement("div");
 			itemElement.classList.add('item');
+			itemElement.classList.add('flex');
 			this.folderElement.appendChild(itemElement);
 
 			var linkElement = document.createElement("a");
+			itemElement.appendChild(linkElement);
 			linkElement.innerText = item.title;
 			linkElement.href = item.url;
 			linkElement.title = item.url;
-			itemElement.appendChild(linkElement);
-			itemElement.addEventListener("click", () => {
+			linkElement.classList.add('flex-one');
+			linkElement.addEventListener("click", () => {
 				chrome.tabs.create({
 					url: item.url
 				});
+			});
+			
+			var buttonElement = document.createElement("button");
+			itemElement.appendChild(buttonElement);
+			buttonElement.innerText = "X";
+			
+			buttonElement.addEventListener("click", async () => {
+				try{
+					await bookmarkService.RemoveBookmark(item.id);
+					await progressController.ShowSuccess();
+				}
+				catch(e){
+					await progressController.ShowFailure();
+				}
+				finally{
+					await this.RefreshFolder();
+				}
 			});
 		});
 	}
