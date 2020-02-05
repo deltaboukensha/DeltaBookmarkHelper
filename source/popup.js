@@ -271,13 +271,25 @@ class SearchInputController {
 			let itemElement = document.createElement("button");
 			itemElement.classList.add('item');
 			let text = item.title;
-			let matches = text.match(pattern);
-			let match = FirstOrDefault(matches);
-			text = text.replace(match, `<b>${match}</b>`);
+			let matches = [];
 			
-			// matches.forEach((match) => {
-			// 	text = text.replace(match, `<b>${match}</b>`);
-			// });
+			while (true) {
+				let match = pattern.exec(text);
+				
+				if (!match) {
+					break;
+				}
+				
+				matches.push({ value: match[0], index: match.index });
+			}
+			
+			let offset = 0;
+			
+			matches.forEach((match) => {
+				let inject = "<b>" + match.value + "</b>";
+				text = text.slice(0, match.index + offset) + inject + text.slice(match.index + offset + match.value.length);
+				offset += inject.length - match.value.length;
+			});
 			
 			itemElement.innerHTML = text;
 			
